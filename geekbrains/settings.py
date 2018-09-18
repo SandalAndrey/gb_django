@@ -24,7 +24,7 @@ SECRET_KEY = 'e&b_f@(n#+=a%!+x)u6na*h=_s37+b=4dj0x96je0lv6b00+e('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['community.pythonanywhere.com', 'sandal.pythonanywhere.com', 'pythonanywhere.com']
 
 # Application definition
 
