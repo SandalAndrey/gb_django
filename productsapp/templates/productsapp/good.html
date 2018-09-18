@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="https://yastatic.net/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $("#menu").load("/static/menu.html");
+            $("#footer").load("/static/footer.html");
+        });
+    </script>
+</head>
+<body>
+<header id="menu"></header>
+<section id="good">
+    <div class="goodInside">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                <li class="breadcrumb-item"><a href="/catalog">Каталог</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Товар {{ goodID }}</li>
+            </ol>
+        </nav>
+        <h1>Замечательный товар №{{ goodID }}</h1>
+        <a href="/static/images/good{{ goodID }}.jpg" target="_blank" class="good_img">
+            <img src="/static/images/good{{ goodID }}.jpg" width="200" alt="Товар {{ goodID }}">
+        </a>
+        <h2>Описание:</h2>
+        <div id="brief">
+            <p>Описание товара №{{ goodID }}</p>
+            <p><strong>BEST FOR:</strong> Getting into waves and maintaining speed; without sacrificing the ability to
+                hit
+                the lip. This board really flows off the tail.</p>
+            <p><strong>FIN:</strong> Future boxes or glass on wooden fins, by Gully, are standard on the Quadkumber.</p>
+        </div>
+        <div id="cart">
+            <button id="AddToCart" onclick="alert('Почти купили Товар{{ goodID }}');">Купить</button>
+        </div>
+        <h2 class="clear">Характеристики товара:</h2>
+        <ol class="good_descr">
+            <li>Характеристика 1</li>
+            <li>
+                Характеристика 2
+                <ul>
+                    <li>Свойство1</li>
+                    <li>Свойство2</li>
+                </ul>
+            </li>
+            <li>
+                Характеристика 3
+                <ul>
+                    <li>Свойство</li>
+                </ul>
+            </li>
+            <li>Характеристика 4</li>
+        </ol>
+        <table>
+            <tbody>
+            <tr class="header_tr">
+                <td class="header_td" colspan="2">Заголовок 1</td>
+                <td class="header_td" colspan="2">Заголовок 2</td>
+                <td class="header_td" colspan="2">Заголовок 3</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Характеристика 1</td>
+                <td>Свойство 1</td>
+                <td>Значение 1</td>
+                <td>77</td>
+                <td>Значение 1</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Свойство 2</td>
+                <td>Значение 2</td>
+                <td>88</td>
+                <td>Значение 2</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Свойство 3</td>
+                <td>Значение 3</td>
+                <td>99</td>
+                <td>Значение 3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="3">Характеристика 2</td>
+                <td>Свойство 1</td>
+                <td>Значение 1</td>
+                <td></td>
+                <td>Значение 1</td>
+                <td>77</td>
+            </tr>
+            <tr>
+                <td>Свойство 2</td>
+                <td>Значение 2</td>
+                <td></td>
+                <td>Значение 2</td>
+                <td>88</td>
+            </tr>
+            <tr>
+                <td>Свойство 3</td>
+                <td>Значение 3</td>
+                <td></td>
+                <td>Значение 3</td>
+                <td>99</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Подробное описание товара:</h2>
+        <div id="full">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima pariatur provident quod repellendus.
+                Commodi
+                deleniti deserunt doloribus, eius, ex exercitationem hic iste iure iusto, laudantium officia quam qui
+                tempore veritatis voluptatum! Aspernatur cumque esse iste nam quaerat quo soluta. Alias hic, ipsum iste
+                laboriosam molestias quidem rem voluptate. Architecto aspernatur deleniti, deserunt dignissimos
+                distinctio
+                doloremque doloribus eius exercitationem illo incidunt labore necessitatibus nemo nobis non odit
+                officiis
+                omnis pariatur porro, reiciendis temporibus tenetur totam, voluptate. A consequatur corporis earum enim
+                fugit hic quia similique vel vitae. A accusamus architecto cum dicta error ex, harum minima, optio
+                quaerat
+                repellendus similique vel.</p>
+        </div>
+    </div>
+</section>
+<footer id="footer"></footer>
+</body>
+</html>
