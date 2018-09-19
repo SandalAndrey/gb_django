@@ -1,8 +1,8 @@
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
 from . import views
 
+app_name = 'products'
 urlpatterns = [
-    path('', views.main),
-    url(r'^[0-9]+/$', views.good),
+    re_path(r'^$', views.main, name='catalog'),
+    path('<int:good_id>/', views.good, name='detail'),
 ]
