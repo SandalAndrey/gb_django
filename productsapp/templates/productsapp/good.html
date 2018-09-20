@@ -15,16 +15,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            $("#menu").load("/static/menu.html");
-            $("#footer").load("/static/footer.html");
-        });
-
-    </script>
 </head>
 <body>
-<header id="menu"></header>
+<header id="menu">
+    {% include "menu.html" %}
+</header>
 <section id="good">
     <div class="goodInside">
         <nav aria-label="breadcrumb">
@@ -138,6 +133,8 @@
         </div>
     </div>
 </section>
-<footer id="footer"></footer>
+<footer id="footer">
+    {% include "footer.html" %}
+</footer>
 </body>
 </html>
