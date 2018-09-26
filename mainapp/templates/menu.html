@@ -43,8 +43,8 @@
         <div class="menu">
             <nav class="nav">
                 <a class="nav-link active" href="/">Главная</a>
-                <a class="nav-link" href="/catalog">Каталог</a>
-                <a class="nav-link" href="/contact">Контакты</a>
+                <a class="nav-link" href="{% url 'products:catalog' %}">Каталог</a>
+                <a class="nav-link" href="{% url 'contacts:main' %}">Контакты</a>
             </nav>
         </div>
     </div>

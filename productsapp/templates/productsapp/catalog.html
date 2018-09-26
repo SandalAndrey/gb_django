@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Каталог</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <script src="https://yastatic.net/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-</head>
+{% include "head.html" %}
 <body>
 <div class="outer">
     <header id="menu">
@@ -41,41 +24,15 @@
                     </ol>
                 </nav>
                 <div class="catalog_goods">
+                    {% for good in goods %}
                     <div class="catalog_good">
-                        <a href="/catalog/1">
-                            <img src="/static/images/good1.jpg" width="100" alt="Товар 1">
+                        <a href="{% url 'products:detail' good_id=good.pk %}">
+                            <img src="/{{good.photos.all.0.src}}" width="100" alt="{{good.name}}">
                         </a>
-                        <br>Краткое описание товара 1
-                        <a href="/catalog/1">Подробнее...</a>
+                        <br>Краткое описание товара {{good.id}}
+                        <a href="{% url 'products:detail' good_id=good.pk %}">Подробнее...</a>
                     </div>
-                    <div class="catalog_good">
-                        <a href="/catalog/2">
-                            <img src="/static/images/good2.jpg" width="100" alt="Товар 2">
-                        </a>
-                        <br>Краткое описание товара 2
-                        <a href="/catalog/2">Подробнее...</a>
-                    </div>
-                    <div class="catalog_good">
-                        <a href="/catalog/3">
-                            <img src="/static/images/good3.jpg" width="100" alt="Товар 3">
-                        </a>
-                        <br>Краткое описание товара 3
-                        <a href="/catalog/3">Подробнее...</a>
-                    </div>
-                    <div class="catalog_good">
-                        <a href="/catalog/4">
-                            <img src="/static/images/good4.jpg" width="100" alt="Товар 4">
-                        </a>
-                        <br>Краткое описание товара 4
-                        <a href="/catalog/4">Подробнее...</a>
-                    </div>
-                    <div class="catalog_good">
-                        <a href="/catalog/5">
-                            <img src="/static/images/good5.jpg" width="100" alt="Товар 5">
-                        </a>
-                        <br>Краткое описание товара 5
-                        <a href="/catalog/4">Подробнее...</a>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
