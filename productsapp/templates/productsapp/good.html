@@ -14,11 +14,7 @@
             </ol>
         </nav>
         <h1>{{ good.name }}</h1>
-        {% for photo in good.photos.all %}
-        <a href="/{{photo.src}}" target="_blank" class="good_img">
-            <img src="/{{photo.src}}" width="200" alt="photo.alt">
-        </a>
-        {% endfor %}
+        {% include 'productsapp/slider.html' %}
         <h2>Описание:</h2>
         <div id="brief">
             <p>Описание товара {{good.name}}</p>
@@ -115,5 +111,26 @@
 <footer id="footer">
     {% include "footer.html" %}
 </footer>
+<script>
+var th = document.getElementById('thumbnails');
+
+th.addEventListener('click', function(e) {
+    var t = e.target,
+    new_src = t.parentNode.href,
+    large = document.getElementById('large'),
+    large_href = document.getElementById('large_href'),
+    cl = large.classList,
+    lgwrap = document.getElementById('lg-wrap');
+    lgwrap.style.backgroundImage = 'url(' +large.src + ')';
+    if(cl) cl.add('hideme');
+
+    window.setTimeout(function(){
+        large.src = new_src;
+        large_href.href = new_src;
+        if(cl) cl.remove('hideme');
+    }, 50);
+    e.preventDefault();
+}, false);
+</script>
 </body>
 </html>

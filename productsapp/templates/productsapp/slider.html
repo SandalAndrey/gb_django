@@ -1,0 +1,16 @@
+<div id='gallery' class='gallery'>
+    <div id='lg-wrap' class='current-image-wrapper'>
+        <a id='large_href' href='/{{good.photos.all.0.src}}' target='_blank'>
+            <img id='large' data-idx='0' src='/{{good.photos.all.0.src}}' width='400'>
+        </a>
+    </div>
+    <ul id='thumbnails' class='thumbnails'>
+        {% for photo in good.photos.all %}
+        <li>
+            <a href='/{{photo.src}}'>
+                <img data-idx='{{photo.pk}}' src='/{{photo.src}}'>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
