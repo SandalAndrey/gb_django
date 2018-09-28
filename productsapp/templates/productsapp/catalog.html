@@ -10,6 +10,9 @@
                 <div class="mainMenu">
                     <a href="/">Главная</a>
                     <a href="/catalog">Каталог</a>
+                    {% for cat in cats %}
+                    <a class = "categoryMenu" href="{% url 'products:category' cat_id=cat.pk %}">{{ cat.name }}</a>
+                    {% endfor %}
                     <a href="/contact">Контакты</a>
                 </div>
             </div>

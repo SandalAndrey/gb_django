@@ -18,34 +18,22 @@
                     <h1>Главная</h1>
                 </div>
                 <div class="catalog_goods">
+                    {% for good in goods %}
                     <div class="catalog_good">
-                        <a href="/catalog/1">
-                            <img src="/static/images/good1.jpg" width="200" alt="Товар 1">
+                        <a href="{% url 'products:detail' good_id=good.pk %}">
+                            <img src="/{{good.photos.all.0.src}}" width="200" alt="{{good.name}}">
                         </a>
                         <div class="productName">
-                            Товар 1
+                            {{good.name}}
                         </div>
                         <div class="productPriceWrap">
                             <div class="actualPrice">
-                                &euro; 865.00
+                                &euro; {{good.price}}
                             </div>
                         </div>
-                        <a href="/catalog/1">Подробнее...</a>
+                        <a href="{% url 'products:detail' good_id=good.pk %}">Подробнее...</a>
                     </div>
-                    <div class="catalog_good">
-                        <a href="/catalog/2">
-                            <img src="/static/images/good2.jpg" width="200" alt="Товар 2">
-                        </a>
-                        <div class="productName">
-                            Товар 2
-                        </div>
-                        <div class="productPriceWrap">
-                            <div class="actualPrice">
-                                &euro; 465.00
-                            </div>
-                        </div>
-                        <a href="/catalog/2">Подробнее...</a>
-                    </div>
+                    {% endfor %}
                     <div class="shopDescr">
                         Описание магазина: Наш магазин самый лучший...
                     </div>

@@ -417,6 +417,9 @@ table {
 .mainMenu {
     background-color: #26d2fc;
 }
+.mainMenu .categoryMenu {
+    text-align:right;
+}
 
 .mainMenu a {
     display: block;
