@@ -1,0 +1,9 @@
+{% for good in goods %}
+<div class="catalog_good">
+    <a href="{% url 'products:detail' good_id=good.pk %}">
+        <img src="/{{good.photos.all.0.src}}" width="100" alt="{{good.name}}">
+    </a>
+    <br>Краткое описание товара {{good.id}}
+    <a href="{% url 'products:detail' good_id=good.pk %}">Подробнее...</a>
+</div>
+{% endfor %}

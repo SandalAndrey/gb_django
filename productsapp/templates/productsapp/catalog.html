@@ -11,7 +11,7 @@
                     <a href="/">Главная</a>
                     <a href="/catalog">Каталог</a>
                     {% for cat in cats %}
-                    <a class = "categoryMenu" href="{% url 'products:category' cat_id=cat.pk %}">{{ cat.name }}</a>
+                    <a class="categoryMenu" href="javascript:" onclick="get_ajax({{cat.pk}})">{{ cat.name }}</a>
                     {% endfor %}
                     <a href="/contact">Контакты</a>
                 </div>
@@ -27,15 +27,7 @@
                     </ol>
                 </nav>
                 <div class="catalog_goods">
-                    {% for good in goods %}
-                    <div class="catalog_good">
-                        <a href="{% url 'products:detail' good_id=good.pk %}">
-                            <img src="/{{good.photos.all.0.src}}" width="100" alt="{{good.name}}">
-                        </a>
-                        <br>Краткое описание товара {{good.id}}
-                        <a href="{% url 'products:detail' good_id=good.pk %}">Подробнее...</a>
-                    </div>
-                    {% endfor %}
+                    {% include 'productsapp/goods.html' %}
                 </div>
             </div>
         </div>
@@ -44,5 +36,21 @@
         {% include "footer.html" %}
     </footer>
 </div>
+<script>
+function get_ajax(id)
+{
+$.ajax({
+    url: '/catalog/',
+    headers: {'X-CSRFToken': '{{ csrf_token }}'},
+    type: "POST",
+    data: {'id':id},
+    cache:false,
+    dataType: "json",
+    success: function(resp){
+        $('.catalog_goods').html(resp.goods_html);
+    }
+});
+}
+</script>
 </body>
 </html>

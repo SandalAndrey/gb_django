@@ -3,16 +3,30 @@ from .models import Good, ProductCategory
 import json
 from django.conf import settings
 import os
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.http import HttpResponse, JsonResponse
+from django.core import serializers
+from django.template import loader
 
 
-def main(request, cat_id = None):
+def main(request):
     goods = Good.objects.all()
-    if cat_id:
-        goods = goods.filter(category = cat_id)
+
     cats = ProductCategory.objects.all()
 
-    return render(request, 'productsapp/catalog.html', {'goods': goods, 'cats':cats})
+    if request.method == 'POST' and request.is_ajax():
+        id = request.POST.get('id')
+        if id:
+            goods = goods.filter(category=id)
+            # data = serializers.serialize('json', goods)
+            # return HttpResponse(data, content_type="application/json")
+
+            goods_html = loader.render_to_string('productsapp/goods.html', {'goods': goods}
+                                                 )
+            output_data = {'goods_html': goods_html}
+
+            return JsonResponse(output_data)
+    else:
+        return render(request, 'productsapp/catalog.html', {'goods': goods, 'cats': cats})
 
 
 def good(request, good_id=1):
@@ -21,6 +35,7 @@ def good(request, good_id=1):
     characteristic = {}
     static_path = settings.STATICFILES_DIRS[0]
 
+    # Загрузка характеристик из файла.
     with open(os.path.join(static_path, 'data.json'), encoding='utf-8') as f:
         characteristics = json.load(f)
     if characteristics and good_id < len(characteristics):
