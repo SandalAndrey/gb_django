@@ -1,0 +1,131 @@
+{% extends 'mainapp/base_tmp.html' %}
+{% load util %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
+{% endblock %}
+{% block carousel %}
+{% endblock %}
+{% block left %}
+{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+        <h1>{{ good.name }}</h1>
+        {% include 'productsapp/slider.html' %}
+        <h2>Описание:</h2>
+        <div id="brief">
+            <p>Описание товара {{good.name}}</p>
+            <p>
+                {{ good.short_desc}}
+            </p>
+        </div>
+        <div class="productPriceWrap">
+            <div class="actualPrice">
+                &euro; {{good.price}}
+            </div>
+        </div>
+        <div id="cart">
+            <button id="AddToCart" onclick="alert('Почти купили {{ good.name }}');">Купить</button>
+        </div>
+        <h2 class="clear">Характеристики товара:</h2>
+        <ol class="good_descr">
+            {% for mykey,myvalue in characteristics.items %}
+            <li>{{ mykey }}
+                <ul>
+                    {% if myvalue|character_list %}
+                    {% for value in myvalue %}
+                    <li>{{ value }}</li>
+                    {% endfor %}
+                    {% else %}
+                    <li>{{ myvalue }}</li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ol>
+        <table>
+            <tbody>
+            <tr class="header_tr">
+                <td class="header_td" colspan="2">Заголовок 1</td>
+                <td class="header_td" colspan="2">Заголовок 2</td>
+                <td class="header_td" colspan="2">Заголовок 3</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Характеристика 1</td>
+                <td>Свойство 1</td>
+                <td>Значение 1</td>
+                <td>77</td>
+                <td>Значение 1</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Свойство 2</td>
+                <td>Значение 2</td>
+                <td>88</td>
+                <td>Значение 2</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Свойство 3</td>
+                <td>Значение 3</td>
+                <td>99</td>
+                <td>Значение 3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="3">Характеристика 2</td>
+                <td>Свойство 1</td>
+                <td>Значение 1</td>
+                <td></td>
+                <td>Значение 1</td>
+                <td>77</td>
+            </tr>
+            <tr>
+                <td>Свойство 2</td>
+                <td>Значение 2</td>
+                <td></td>
+                <td>Значение 2</td>
+                <td>88</td>
+            </tr>
+            <tr>
+                <td>Свойство 3</td>
+                <td>Значение 3</td>
+                <td></td>
+                <td>Значение 3</td>
+                <td>99</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Подробное описание товара:</h2>
+        <div id="full">
+            <p>
+                {{ good.description|linebreaksbr }}
+            </p>
+        </div>
+</div>
+{% endblock %}
+{% block script %}
+{{ block.super }}
+<script>
+var th = document.getElementById('thumbnails');
+
+th.addEventListener('click', function(e) {
+    var t = e.target,
+    new_src = t.parentNode.href,
+    large = document.getElementById('large'),
+    large_href = document.getElementById('large_href'),
+    cl = large.classList,
+    lgwrap = document.getElementById('lg-wrap');
+    lgwrap.style.backgroundImage = 'url(' +large.src + ')';
+    if(cl) cl.add('hideme');
+
+    window.setTimeout(function(){
+        large.src = new_src;
+        large_href.href = new_src;
+        if(cl) cl.remove('hideme');
+    }, 50);
+    e.preventDefault();
+}, false);
+</script>
+{% endblock %}

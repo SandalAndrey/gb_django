@@ -1,0 +1,36 @@
+{% extends 'mainapp/base_tmp.html' %}
+{% block carousel %}
+{% endblock %}
+{% block categorys %}
+<div class="list-group">
+    {% for cat in categorys %}
+    <a class="list-group-item" href="javascript:" onclick="get_ajax({{cat.pk}})">{{ cat.name }}</a>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block content %}
+<!--<div class="catalog_goods">-->
+    {% include 'productsapp/inc_goods.html' %}
+<!--</div>-->
+{% endblock %}
+{% block script %}
+{{ block.super }}
+<script>
+function get_ajax(id)
+{
+$.ajax({
+    url: '/catalog/',
+    headers: {'X-CSRFToken': '{{ csrf_token }}'},
+    type: "POST",
+    data: {'id':id},
+    cache:false,
+    dataType: "json",
+    success: function(resp){
+        $('#catalog_goods').html(resp.goods_html);
+        console.log(resp);
+    }
+});
+}
+
+</script>
+{% endblock %}

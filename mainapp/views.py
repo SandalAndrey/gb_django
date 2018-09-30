@@ -7,4 +7,5 @@ def main(request):
     goods = []
     for cat in cats:
         goods.append(Good.objects.filter(category=cat.pk)[0])
-    return render(request, 'mainapp/index.html', {'goods': goods})
+    # return render(request, 'mainapp/index.html', {'goods': goods})
+    return render(request, 'mainapp/ext_index.html', {'goods': goods, 'categorys':cats})

@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Good, ProductCategory
 import json
-from django.conf import settings
 import os
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
+
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.template import loader
+
+from .models import Good, ProductCategory
 
 
 def main(request):
@@ -20,13 +21,20 @@ def main(request):
             # data = serializers.serialize('json', goods)
             # return HttpResponse(data, content_type="application/json")
 
-            goods_html = loader.render_to_string('productsapp/goods.html', {'goods': goods}
+            goods_html = loader.render_to_string('productsapp/inc_goods.html', {'goods': goods}
                                                  )
             output_data = {'goods_html': goods_html}
 
             return JsonResponse(output_data)
     else:
-        return render(request, 'productsapp/catalog.html', {'goods': goods, 'cats': cats})
+        return render(request, 'productsapp/ext_catalog.html', {'goods': goods, 'categorys': cats})
+
+
+def category(request, cat_id=None):
+    cats = ProductCategory.objects.all()
+    goods = Good.objects.filter(category=cat_id)
+
+    return render(request, 'productsapp/ext_catalog.html', {'goods': goods, 'categorys': cats})
 
 
 def good(request, good_id=1):

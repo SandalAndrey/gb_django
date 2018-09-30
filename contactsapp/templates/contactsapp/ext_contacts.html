@@ -1,0 +1,33 @@
+{% extends 'mainapp/base_tmp.html' %}
+{% block carousel %}
+{% endblock %}
+{% block content %}
+<div class="row">
+<div class="productsWrap">
+    <form name="feedback" method="POST">
+        <fieldset>
+            <legend>Напишите нам:</legend>
+            <input type="text" placeholder="Введите Ваше имя" name="name" id="name">
+            <br>
+            <input type="text" placeholder="Введите Ваш email" name="email" required id="email">
+            <br>
+            <input type="text" placeholder="Введите тему сообщения" name="tema" id="tema">
+            <br>
+            <textarea placeholder="Ваше сообщение:" name="message" id="message"></textarea>
+            <br>
+            <button type="submit">Отправить</button>
+        </fieldset>
+    </form>
+    <h2>Адрес</h2>
+    <p><strong>Телефон</strong>: +7 921 1234567</p>
+    <p><strong>Адрес</strong>: Санкт-Петербург, Невский пр., 1</p>
+    <p><strong>email</strong>: <a href="mailto:shop@someshop.ru" target="_blank" rel="noopener">shop@someshop.ru</a>
+    </p>
+    <p>Время работы: 08:00 - 20:00</p>
+    <p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1998.7156752448736!2d30.31002931609681!3d59.93685998187556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696311af3115d53%3A0x95467c366bfc8035!2z0J3QtdCy0YHQutC40Lkg0L_RgC4sIDEsINCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCzLCAxOTExODY!5e0!3m2!1sru!2sru!4v1533279758584"
+                allowfullscreen="allowfullscreen"></iframe>
+    </p>
+</div>
+</div>
+{% endblock %}
