@@ -5,11 +5,15 @@
  */
 
 body {
-  padding-top: 54px;
+    padding-top: 54px;
+}
+.footer{
+    height:60px;
+    padding-top:20px;
 }
 
 @media (min-width: 992px) {
-  body {
-    padding-top: 56px;
-  }
+    body {
+        padding-top: 56px;
+    }
 }
