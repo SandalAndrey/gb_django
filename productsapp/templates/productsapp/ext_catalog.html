@@ -9,9 +9,10 @@
 </div>
 {% endblock %}
 {% block content %}
-<!--<div class="catalog_goods">-->
-    {% include 'productsapp/inc_goods.html' %}
-<!--</div>-->
+<h1 class="my-4">Каталог товаров</h1>
+<div id='catalog_goods' class="row">
+{% include 'productsapp/inc_goods.html' %}
+</div>
 {% endblock %}
 {% block script %}
 {{ block.super }}
@@ -31,6 +32,5 @@ $.ajax({
     }
 });
 }
-
 </script>
 {% endblock %}

@@ -1,33 +1,107 @@
 {% extends 'mainapp/base_tmp.html' %}
 {% block carousel %}
 {% endblock %}
+{% block left %}
+{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+    </ol>
+</nav>
+{% endblock %}
 {% block content %}
-<div class="row">
-<div class="productsWrap">
-    <form name="feedback" method="POST">
-        <fieldset>
-            <legend>Напишите нам:</legend>
-            <input type="text" placeholder="Введите Ваше имя" name="name" id="name">
-            <br>
-            <input type="text" placeholder="Введите Ваш email" name="email" required id="email">
-            <br>
-            <input type="text" placeholder="Введите тему сообщения" name="tema" id="tema">
-            <br>
-            <textarea placeholder="Ваше сообщение:" name="message" id="message"></textarea>
-            <br>
-            <button type="submit">Отправить</button>
-        </fieldset>
-    </form>
-    <h2>Адрес</h2>
-    <p><strong>Телефон</strong>: +7 921 1234567</p>
-    <p><strong>Адрес</strong>: Санкт-Петербург, Невский пр., 1</p>
-    <p><strong>email</strong>: <a href="mailto:shop@someshop.ru" target="_blank" rel="noopener">shop@someshop.ru</a>
-    </p>
-    <p>Время работы: 08:00 - 20:00</p>
-    <p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1998.7156752448736!2d30.31002931609681!3d59.93685998187556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696311af3115d53%3A0x95467c366bfc8035!2z0J3QtdCy0YHQutC40Lkg0L_RgC4sIDEsINCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCzLCAxOTExODY!5e0!3m2!1sru!2sru!4v1533279758584"
-                allowfullscreen="allowfullscreen"></iframe>
-    </p>
-</div>
+<h1 class="my-4">Контакты</h1>
+<div class="container">
+    <div class="row">
+        <!--<div class="col-xl-8 offset-xl-2 py-5">-->
+        <div class="col-lg-8 col-md-12">
+            <h2>Обратная связь</h2>
+            <form id="contact-form" data-toggle="validator" role="form">
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_name">Имя *</label>
+                                <input id="form_name" type="text" name="name" class="form-control"
+                                       placeholder="Введите Ваше имя *" required="required"
+                                       data-error="Имя обязательно.">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_lastname">Фамилия *</label>
+                                <input id="form_lastname" type="text" name="surname" class="form-control"
+                                       placeholder="Введите Вашу фамилию *" required="required"
+                                       data-error="Фамилия обязательна.">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_email">Email *</label>
+                                <input id="form_email" type="email" name="email" class="form-control"
+                                       placeholder="Введите Ваш email *" required="required"
+                                       data-error="Требуется email.">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_need">Тема обращения *</label>
+                                <select id="form_need" name="need" class="form-control" required="required"
+                                        data-error="Выберите тему обращения.">
+                                    <option value=""></option>
+                                    <option value="Request1">Тема 1</option>
+                                    <option value="Request2">Тема 2</option>
+                                    <option value="Request3">Тема 3</option>
+                                    <option value="Other">Другое</option>
+                                </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Сообщение *</label>
+                                <textarea id="form_message" name="message" class="form-control"
+                                          placeholder="Введите сообщение *" rows="4" required="required"
+                                          data-error="Текст сообщения важен для нас..."></textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-success btn-send" value="Послать">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-muted">
+                                <strong>*</strong> Обязательные поля.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <h2>Наши контакты</h2>
+            <p><strong>Телефон</strong>: +7 921 1234567</p>
+            <p><strong>Адрес</strong>: Санкт-Петербург, Невский пр., 1</p>
+            <p><strong>email</strong>: <a href="mailto:shop@someshop.ru" target="_blank"
+                                          rel="noopener">shop@someshop.ru</a>
+            </p>
+            <p>Время работы: 08:00 - 20:00</p>
+            <p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1998.7156752448736!2d30.31002931609681!3d59.93685998187556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696311af3115d53%3A0x95467c366bfc8035!2z0J3QtdCy0YHQutC40Lkg0L_RgC4sIDEsINCh0LDQvdC60YIt0J_QtdGC0LXRgNCx0YPRgNCzLCAxOTExODY!5e0!3m2!1sru!2sru!4v1533279758584"
+                        allowfullscreen="allowfullscreen"></iframe>
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}

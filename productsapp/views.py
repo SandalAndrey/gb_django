@@ -10,7 +10,11 @@ from .models import Good, ProductCategory
 
 
 def main(request):
-    goods = Good.objects.all()
+    cat_id = request.GET.get('cat', '')
+    if cat_id:
+        goods = Good.objects.filter(category=cat_id)
+    else:
+        goods = Good.objects.all()
 
     cats = ProductCategory.objects.all()
 

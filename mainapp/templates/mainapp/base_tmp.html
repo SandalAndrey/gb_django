@@ -45,11 +45,19 @@
     </div>
 </nav>
 <div class="container">
-
+    {% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'products:catalog' %}">Каталог</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{good.name}}</li>
+        </ol>
+    </nav>
+    {% endblock %}
     <div class="row">
         {% block left %}
         <div class="col-lg-3">
-            <h1 class="my-4">Название магазина</h1>
+            <h2 class="my-4">Название магазина</h2>
             {% block categorys %}
             <div class="list-group">
                 {% for cat in categorys %}

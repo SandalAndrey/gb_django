@@ -42,10 +42,16 @@
     </div>
 </nav>
 <div class="container">
-
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href=".">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'products:catalog' %}">Каталог</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{good.name}}</li>
+        </ol>
+    </nav>
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <h1>{{ good.name }}</h1>
+            <h1 class="my-4">{{ good.name }}</h1>
             {% include 'productsapp/slider.html' %}
             <h2>Описание:</h2>
             <div id="brief">
@@ -174,6 +180,7 @@ th.addEventListener('click', function(e) {
     }, 50);
     e.preventDefault();
 }, false);
+
 </script>
 </body>
 </html>

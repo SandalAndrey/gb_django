@@ -14,7 +14,7 @@ class Photo(models.Model):
     src = models.ImageField(upload_to=user_directory_path)
 
     def __str__(self):
-        return self.src.name
+        return '{} - {}'.format(self.pk, self.src.name)
 
 
 class ProductCategory(models.Model):
@@ -34,10 +34,8 @@ class Good(models.Model):
     short_desc = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    created_date = models.DateTimeField(
-        default=timezone.now)
-    published_date = models.DateTimeField(
-        blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()
