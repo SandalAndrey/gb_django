@@ -15,27 +15,22 @@
 <h1 class="my-4">Контакты</h1>
 <div class="container">
     <div class="row">
-        <!--<div class="col-xl-8 offset-xl-2 py-5">-->
         <div class="col-lg-8 col-md-12">
             <h2>Обратная связь</h2>
-            <form id="contact-form" data-toggle="validator" role="form">
+            <form data-toggle="validator" role="form" method="POST" class="post-form">{% csrf_token %}
                 <div class="controls">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_name">Имя *</label>
-                                <input id="form_name" type="text" name="name" class="form-control"
-                                       placeholder="Введите Ваше имя *" required="required"
-                                       data-error="Имя обязательно.">
+                                {{ form.name.label_tag }}
+                                {{ form.name.as_widget }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_lastname">Фамилия *</label>
-                                <input id="form_lastname" type="text" name="surname" class="form-control"
-                                       placeholder="Введите Вашу фамилию *" required="required"
-                                       data-error="Фамилия обязательна.">
+                                {{ form.surname.label_tag }}
+                                {{ form.surname }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -43,24 +38,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_email">Email *</label>
-                                <input id="form_email" type="email" name="email" class="form-control"
-                                       placeholder="Введите Ваш email *" required="required"
-                                       data-error="Требуется email.">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="form_need">Тема обращения *</label>
-                                <select id="form_need" name="need" class="form-control" required="required"
-                                        data-error="Выберите тему обращения.">
-                                    <option value=""></option>
-                                    <option value="Request1">Тема 1</option>
-                                    <option value="Request2">Тема 2</option>
-                                    <option value="Request3">Тема 3</option>
-                                    <option value="Other">Другое</option>
-                                </select>
+                                {{ form.subject.label_tag }}
+                                {{ form.subject }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -68,10 +54,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="form_message">Сообщение *</label>
-                                <textarea id="form_message" name="message" class="form-control"
-                                          placeholder="Введите сообщение *" rows="4" required="required"
-                                          data-error="Текст сообщения важен для нас..."></textarea>
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
