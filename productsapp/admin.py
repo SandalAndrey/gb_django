@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Good, Photo, ProductCategory
+from productsapp.models import Good, Photo, ProductCategory
 
 admin.site.register(Good)
 admin.site.register(Photo)

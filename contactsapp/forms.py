@@ -1,11 +1,11 @@
 from django import forms
-from .models import Message
+from contactsapp.models import Message
 from django.utils.translation import ugettext_lazy as _
 
 
 class MessageForm(forms.ModelForm):
-    name = forms.CharField(label='Имя')
-    surname = forms.CharField(label='Фамилия')
+    # name = forms.CharField(label='Имя')
+    # surname = forms.CharField(label='Фамилия')
 
     class Meta:
         model = Message
