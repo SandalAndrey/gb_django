@@ -2,16 +2,17 @@
 {% block carousel %}
 {% endblock %}
 {% block categorys %}
-<div class="list-group">
+<div class='list-group'>
     {% for cat in categorys %}
-    <a class="list-group-item" href="javascript:" onclick="get_ajax({{cat.pk}})">{{ cat.name }}</a>
+    <a class='list-group-item' href='javascript:' onclick='get_ajax({{cat.pk}})'>{{ cat.name }}</a>
     {% endfor %}
 </div>
 {% endblock %}
 {% block content %}
-<h1 class="my-4">Каталог товаров</h1>
-<div id='catalog_goods' class="row">
-{% include 'productsapp/inc_goods.html' %}
+<h1 class='my-4'>Каталог товаров</h1>
+<div id='loader' class='nodisp'></div>
+<div id='catalog_goods' class='row'>
+    {% include 'productsapp/inc_goods.html' %}
 </div>
 {% endblock %}
 {% block script %}
@@ -19,18 +20,24 @@
 <script>
 function get_ajax(id)
 {
+$('#loader').removeClass('nodisp');
+$('#catalog_goods').addClass('nodisp');
+
 $.ajax({
     url: '/catalog/',
     headers: {'X-CSRFToken': '{{ csrf_token }}'},
-    type: "POST",
+    type: 'POST',
     data: {'id':id},
     cache:false,
-    dataType: "json",
+    dataType: 'json',
     success: function(resp){
         $('#catalog_goods').html(resp.goods_html);
-        console.log(resp);
+
+        $('#loader').addClass('nodisp');
+        $('#catalog_goods').removeClass('nodisp');
     }
 });
 }
+
 </script>
 {% endblock %}
