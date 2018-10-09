@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from authapp.models import ShopUser
 
 
 def user_directory_path(instance, filename):
@@ -26,7 +27,7 @@ class ProductCategory(models.Model):
 
 
 class Good(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    author = models.ForeignKey(ShopUser, on_delete=models.CASCADE)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     photos = models.ManyToManyField(Photo)
