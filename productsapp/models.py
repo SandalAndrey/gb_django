@@ -34,7 +34,9 @@ class Good(models.Model):
     short_desc = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    created_date = models.DateTimeField(default=timezone.now)
+
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
