@@ -25,11 +25,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Главная
-                        <span class="sr-only">(current)</span>
-                    </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Главная</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'products:catalog' %}">Каталог</a>
@@ -37,6 +35,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'contacts:main' %}">Контакты</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav  ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth:edit' %}">{% if user.first_name > '' %}{{ user.first_name
+                        }}{% else %}{{ user.username }}{% endif %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth:logout' %}">Выйти</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#LoginPopup">Логин</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -49,6 +62,14 @@
             <li class="breadcrumb-item active" aria-current="page">{{good.name}}</li>
         </ol>
     </nav>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
     <div class="row justify-content-center">
         <div class="col-lg-9">
             <h1 class="my-4">{{ good.name }}</h1>
@@ -146,6 +167,41 @@
             </div>
         </div>
     </div>
+    {% block login %}
+    <div class="modal fade" id="LoginPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="row justify-content-around">
+                    <div class="col-md-8">
+                        <h3 class="modal-title">Логин / Регистрация</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <br>
+                <!-- body -->
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <form action="{% url 'auth:login' %}" method="post">
+                            {% csrf_token %}
+                            {{ login_form.as_p }}
+                            <br>
+                            <input class="btn btn-primary btn-block" type="submit" value="войти">
+                            <br>
+                        </form>
+                    </div>
+                    <div class="col-md-8">
+                        <p class="text-center">
+                            <a href="{% url 'auth:register' %}">Регистрация</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
 </div>
 <footer class="footer fixed-bottom bg-dark">
     <div class="container">
@@ -180,6 +236,8 @@ th.addEventListener('click', function(e) {
     }, 50);
     e.preventDefault();
 }, false);
+
+
 
 </script>
 </body>

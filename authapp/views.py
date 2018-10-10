@@ -15,6 +15,7 @@ def do_login(request, name, password):
         auth.login(request, user)
         # return HttpResponseRedirect(reverse('/'))
         messages.success(request, 'Добро пожаловать на сайт, {}'.format(user.first_name))
+
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
