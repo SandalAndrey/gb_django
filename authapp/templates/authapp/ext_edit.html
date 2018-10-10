@@ -1,0 +1,32 @@
+{% extends 'mainapp/base_tmp.html' %}
+{% block carousel %}
+{% endblock %}
+{% block left %}
+{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Редактирование профиля</li>
+    </ol>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="row justify-content-end">
+    {% if user.avatar %}
+    <div class="col-md-4">
+        <img src="/media/{{ user.avatar }}" width="100%">
+    </div>
+    {% endif %}
+    <div class="col-md-8">
+        <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ edit_form.as_p }}
+            <input class="btn btn-primary btn-block" type="submit" value="Сохранить">
+        </form>
+    </div>
+</div>
+<br><br>
+{% endblock %}
+{% block login %}
+{% endblock %}

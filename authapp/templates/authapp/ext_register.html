@@ -1,0 +1,28 @@
+{% extends 'mainapp/base_tmp.html' %}
+{% block carousel %}
+{% endblock %}
+{% block left %}
+{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Регистрация</li>
+    </ol>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="row justify-content-end">
+    <div class="col-lg-8">
+        <form class="form-horizontal" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ register_form.as_p }}
+            <br>
+            <input class="btn btn-primary btn-block" type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+</div>
+<br><br>
+{% endblock %}
+{% block login %}
+{% endblock %}

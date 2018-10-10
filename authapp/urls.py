@@ -6,4 +6,6 @@ app_name = 'auth'
 urlpatterns = [
     url(r'^login/$', authapp.login, name='login'),
     url(r'^logout/$', authapp.logout, name='logout'),
+    url(r'^register/$', authapp.register, name='register'),
+    url(r'^edit/$', authapp.edit, name='edit'),
 ]
