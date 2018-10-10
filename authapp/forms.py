@@ -27,8 +27,15 @@ class ShopUserRegisterForm(UserCreationForm):
 
     def clean_age(self):
         data = self.cleaned_data['age']
-        if data < 18:
+        if not data or data < 18:
             raise forms.ValidationError("Вы слишком молоды!")
+
+        return data
+
+    def clean_first_name(self):
+        data = self.cleaned_data['first_name']
+        if len(data) < 5:
+            raise forms.ValidationError("Введено слишком короткое имя!")
 
         return data
 
@@ -48,7 +55,14 @@ class ShopUserEditForm(UserChangeForm):
 
     def clean_age(self):
         data = self.cleaned_data['age']
-        if data < 18:
+        if not data or data < 18:
             raise forms.ValidationError("Вы слишком молоды!")
+
+        return data
+
+    def clean_first_name(self):
+        data = self.cleaned_data['first_name']
+        if len(data) < 5:
+            raise forms.ValidationError("Введено слишком короткое имя!")
 
         return data

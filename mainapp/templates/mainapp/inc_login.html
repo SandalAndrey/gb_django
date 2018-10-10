@@ -1,0 +1,33 @@
+    <div class="modal fade" id="LoginPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="row justify-content-around">
+                    <div class="col-md-8">
+                        <h3 class="modal-title">Логин / Регистрация</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <br>
+                <!-- body -->
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <form action="{% url 'auth:login' %}" method="post">
+                            {% csrf_token %}
+                            {{ login_form.as_p }}
+                            <br>
+                            <input class="btn btn-primary btn-block" type="submit" value="войти">
+                            <br>
+                        </form>
+                    </div>
+                    <div class="col-md-8">
+                        <p class="text-center">
+                            <a href="{% url 'auth:register' %}">Регистрация</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
