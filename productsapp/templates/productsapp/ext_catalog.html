@@ -20,6 +20,7 @@
 <script>
 function get_ajax(id)
 {
+
 $('#loader').removeClass('nodisp');
 $('#catalog_goods').addClass('nodisp');
 
@@ -35,9 +36,20 @@ $.ajax({
 
         $('#loader').addClass('nodisp');
         $('#catalog_goods').removeClass('nodisp');
+
+        window.history.pushState({"html":resp.goods_html},"", "{% url 'products:catalog' %}?cat="+id);
     }
 });
 }
 
+$(window).on('load', function(){
+    window.history.replaceState({"html":$('#catalog_goods').html()},"", "");
+});
+
+window.onpopstate = function(e){
+    if(e.state){
+        $('#catalog_goods').html(e.state.html);
+    }
+};
 </script>
 {% endblock %}

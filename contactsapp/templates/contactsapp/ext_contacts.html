@@ -1,8 +1,7 @@
 {% extends 'mainapp/base_tmp.html' %}
 {% block carousel %}
 {% endblock %}
-{% block left %}
-{% endblock %}
+
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -15,7 +14,7 @@
 <h1 class="my-4">Контакты</h1>
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-12">
+        <div class="col-lg-6 col-md-12">
             <h2>Обратная связь</h2>
             <form data-toggle="validator" role="form" method="POST" class="post-form">{% csrf_token %}
                 <div class="controls">
@@ -43,7 +42,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-6 col-md-12">
             <h2>Наши контакты</h2>
             <p><strong>Телефон</strong>: +7 921 1234567</p>
             <p><strong>Адрес</strong>: Санкт-Петербург, Невский пр., 1</p>
