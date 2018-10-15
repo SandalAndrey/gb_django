@@ -4,7 +4,8 @@
 {% block categorys %}
 <div class='list-group'>
     {% for cat in categorys %}
-    <a class='list-group-item' href='javascript:' onclick='get_ajax({{cat.pk}})'>{{ cat.name }}</a>
+    <!--<a class='list-group-item' href='javascript:' onclick='get_ajax({{cat.pk}})'>{{ cat.name }}</a>-->
+    <a class="list-group-item" href="{% url 'products:catalog' %}?cat={{cat.pk}}">{{ cat.name }}</a>
     {% endfor %}
 </div>
 {% endblock %}
@@ -13,6 +14,23 @@
 <div id='loader' class='nodisp'></div>
 <div id='catalog_goods' class='row'>
     {% include 'productsapp/inc_goods.html' %}
+</div>
+{% endblock %}
+{% block pagination%}
+<div class="row justify-content-center">
+    <nav aria-label="Страницы:">
+        <ul class="pagination">
+            {% if goods.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ goods.previous_page_number }}&cat={{ cat_id }}">Назад</a></li>
+            {% endif %}
+            <li class="page-item">
+                <span class="page-link">Страница {{ goods.number }} из {{ goods.paginator.num_pages }}</span>
+            </li>
+            {% if goods.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ goods.next_page_number }}&cat={{ cat_id }}">Вперед</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}
 {% block script %}
@@ -25,7 +43,7 @@ $('#loader').removeClass('nodisp');
 $('#catalog_goods').addClass('nodisp');
 
 $.ajax({
-    url: '/catalog/',
+    url: '/catalog/?cat='+id,
     headers: {'X-CSRFToken': '{{ csrf_token }}'},
     type: 'POST',
     data: {'id':id},
@@ -33,6 +51,7 @@ $.ajax({
     dataType: 'json',
     success: function(resp){
         $('#catalog_goods').html(resp.goods_html);
+        console.log(resp.cat_id);
 
         $('#loader').addClass('nodisp');
         $('#catalog_goods').removeClass('nodisp');
@@ -51,5 +70,8 @@ window.onpopstate = function(e){
         $('#catalog_goods').html(e.state.html);
     }
 };
+
+
+
 </script>
 {% endblock %}

@@ -47,7 +47,6 @@
             {% block categorys %}
             <div class="list-group">
                 {% for cat in categorys %}
-                <!--<a class="list-group-item" href="{% url 'products:category' cat_id=cat.pk %}">{{ cat.name }}</a>-->
                 <a class="list-group-item" href="{% url 'products:catalog' %}?cat={{cat.pk}}">{{ cat.name }}</a>
                 {% endfor %}
             </div>
@@ -60,6 +59,9 @@
             {% endblock %}
             {% block content %}
             {% endblock %}
+            {% block pagination%}
+            {% endblock %}
+
         </div>
     </div>
     {% block login %}
