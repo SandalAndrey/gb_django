@@ -17,7 +17,7 @@ class MessageForm(forms.ModelForm):
         labels = {
             'name': _('Имя'),
             'surname': _('Фамилия'),
-            'email': _('Email'),
+            'email': _('Адрес Email'),
             'subject': _('Тема'),
             'message': _('Сообщение'),
         }
