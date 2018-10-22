@@ -8,6 +8,21 @@
     <a class="list-group-item" href="{% url 'products:catalog' %}?cat={{cat.pk}}">{{ cat.name }}</a>
     {% endfor %}
 </div>
+<br>
+{% if user.is_authenticated %}
+<div class='list-group'>
+    {% if cat_id %}
+    <a class="list-group-item" href="{% url 'products:update_cat' cat_id %}">Изменить категорию</a>
+    <a class="list-group-item" href="{% url 'products:delete_cat' cat_id %}">Удалить категорию</a>
+    {% else %}
+    <a class="list-group-item" href="{% url 'products:create_cat' %}">Добавить категорию</a>
+    {% endif %}
+</div>
+<br>
+<div class='list-group'>
+    <a class="list-group-item" href="{% url 'products:create_prod' %}">Добавить товар</a>
+</div>
+{% endif %}
 {% endblock %}
 {% block content %}
 <h1 class='my-4'>Каталог товаров</h1>
@@ -21,13 +36,15 @@
     <nav aria-label="Страницы:">
         <ul class="pagination">
             {% if goods.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page={{ goods.previous_page_number }}&cat={{ cat_id }}">Назад</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ goods.previous_page_number }}&cat={{ cat_id }}">Назад</a>
+            </li>
             {% endif %}
             <li class="page-item">
                 <span class="page-link">Страница {{ goods.number }} из {{ goods.paginator.num_pages }}</span>
             </li>
             {% if goods.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ goods.next_page_number }}&cat={{ cat_id }}">Вперед</a></li>
+            <li class="page-item"><a class="page-link"
+                                     href="?page={{ goods.next_page_number }}&cat={{ cat_id }}">Вперед</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -70,6 +87,8 @@ window.onpopstate = function(e){
         $('#catalog_goods').html(e.state.html);
     }
 };
+
+
 
 
 

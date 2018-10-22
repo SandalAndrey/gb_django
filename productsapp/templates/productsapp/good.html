@@ -62,6 +62,26 @@
             <li class="breadcrumb-item active" aria-current="page">{{good.name}}</li>
         </ol>
     </nav>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCRUD"
+                    aria-controls="navbarCRUD" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCRUD">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products:update_prod' good.pk %}">Изменить товар</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products:delete_prod' good.pk %}">Удалить товар</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
     {% for message in messages %}
     <div class="alert {{ message.tags }} alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">
@@ -236,6 +256,8 @@ th.addEventListener('click', function(e) {
     }, 50);
     e.preventDefault();
 }, false);
+
+
 
 
 
