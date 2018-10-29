@@ -51,6 +51,13 @@
                 {% endfor %}
             </div>
             {% endblock %}
+            {% block basket %}
+            <br>
+            <div class='list-group'>
+                <a href="{% url 'basket:view' %}" class='list-group-item list-group-item-success'>Корзина: {%if basket%}
+                    {{ basket|length }} {% endif %} </a>
+            </div>
+            {% endblock %}
         </div>
         {% endblock %}
         <div class="col-lg-9">

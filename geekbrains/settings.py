@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', 'community.pythonanywhere.com', 'sandal.pythonanyw
 
 INSTALLED_APPS = [
     'mainapp',
+    'basketapp',
     'productsapp',
     'contactsapp',
     'authapp',
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'authapp.context_processors.include_login_form',
+                'basketapp.context_processors.include_basket',
             ],
         },
     },

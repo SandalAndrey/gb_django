@@ -24,6 +24,7 @@ urlpatterns = [
     re_path(r'^$', include('mainapp.urls')),
     path('catalog/', include('productsapp.urls')),
     path('contact/', include('contactsapp.urls')),
+    path(r'^basket/', include('basketapp.urls')),
     re_path(r'^auth/', include('authapp.urls')),
 ]
 

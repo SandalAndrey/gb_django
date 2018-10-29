@@ -107,7 +107,7 @@
                 </div>
             </div>
             <div id="cart">
-                <button id="AddToCart" onclick="alert('Почти купили {{ good.name }}');">Купить</button>
+                <a href="{% url 'basket:add' good.pk %}" class="btn btn-success btn-send">В корзину!</a>
             </div>
             <h2 class="clear">Характеристики товара:</h2>
             <ol class="good_descr">
